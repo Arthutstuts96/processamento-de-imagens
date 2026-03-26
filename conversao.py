@@ -1,5 +1,8 @@
+import os
+
 from PIL import Image
 import numpy as np
+from numpy.typing import NDArray
 
 def converter_para_preto_e_branco(caminho_imagem):
     """
@@ -22,3 +25,32 @@ def imagem_para_matriz(imagem):
     Transforma um objeto de imagem do Pillow em uma matriz NumPy (array 2D).
     """
     return np.array(imagem)
+
+
+def salvar_matriz_como_imagem(matriz: NDArray, nome_arquivo):
+    """
+    Converte uma matriz NumPy em uma imagem preto e branco (L)
+    e a salva no diretório assets/resultados/interpolacao.
+    """
+    
+    # 1. Define e garante a existência do diretório de destino
+    diretorio_destino = os.path.join("imagens", "resultados", "interpolacao")
+
+    # 2. Constrói o caminho completo do arquivo
+    # Garante que tenha uma extensão válida (ex: .png)
+    if not nome_arquivo.lower().endswith(('.png', '.jpg', '.jpeg')):
+        nome_arquivo += ".png"
+        
+    caminho_completo = os.path.join(diretorio_destino, nome_arquivo)
+
+    # 3. Converte a matriz para uma imagem Pillow
+    try:
+        imagem_pb = Image.fromarray(matriz, mode='L')
+        
+        imagem_pb.save(caminho_completo)
+        print(f"Imagem salva com sucesso em: {caminho_completo}")
+        return True
+        
+    except Exception as e:
+        print(f"Erro ao salvar imagem: {e}")
+        return False

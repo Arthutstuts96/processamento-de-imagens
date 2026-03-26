@@ -1,5 +1,5 @@
 from PIL import Image
-from conversao import converter_para_preto_e_branco, imagem_para_matriz
+from conversao import converter_para_preto_e_branco, imagem_para_matriz, salvar_matriz_como_imagem
 from interpolacao.interpolacao_vizinho_proximo import ampliar_vizinho_proximo, reduzir_vizinho_proximo
 
 
@@ -18,4 +18,6 @@ if __name__ == "__main__":
     
     print(f"Dimensões da matriz (Linhas x Colunas): {matriz_pixels.shape}")
 
-    ampliar_vizinho_proximo(matriz_pixels)
+    # nova_imagem = ampliar_vizinho_proximo(matriz_pixels)
+    nova_imagem = reduzir_vizinho_proximo(matriz_pixels)
+    salvar_matriz_como_imagem(nova_imagem, "reducao_vizinho.jpg")
