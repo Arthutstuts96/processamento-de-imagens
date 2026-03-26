@@ -1,11 +1,11 @@
 from PIL import Image
 from conversao import converter_para_preto_e_branco, imagem_para_matriz, salvar_matriz_como_imagem
 from interpolacao.interpolacao_vizinho_proximo import ampliar_vizinho_proximo, reduzir_vizinho_proximo
+import os
 
-
-if __name__ == "__main__":
-    caminho = "imagens/banana.jpg"
-    caminho_pb = "imagens/preto_e_branco/banana.jpg"
+def main():
+    caminho = "imagens/mario.png"
+    caminho_pb = "imagens/preto_e_branco/mario.png"
 
     try:
         imagem = Image.open(caminho_pb)
@@ -18,6 +18,9 @@ if __name__ == "__main__":
     
     print(f"Dimensões da matriz: {matriz_pixels.shape}")
 
-    # nova_imagem = ampliar_vizinho_proximo(matriz_pixels)
-    nova_imagem = reduzir_vizinho_proximo(matriz_pixels)
-    salvar_matriz_como_imagem(nova_imagem, "reducao_vizinho.jpg")
+    nova_imagem = ampliar_vizinho_proximo(matriz_pixels)
+    # nova_imagem = reduzir_vizinho_proximo(matriz_pixels)
+    salvar_matriz_como_imagem(nova_imagem, "aumento_vizinho_mario.jpg")
+    
+if __name__ == "__main__":
+    main()
