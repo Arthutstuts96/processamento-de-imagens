@@ -5,6 +5,9 @@ from numpy.typing import NDArray
 
 
 def ampliar_vizinho_proximo(matriz: NDArray) -> NDArray: 
+    """
+    Amplia uma matriz NumPy usando a interpolação de vizinho mais próximo.
+    """
     linhas = matriz.shape[0]
     colunas = matriz.shape[1]
     nova_matriz = np.zeros((linhas * 2, colunas * 2), dtype=np.uint8)
@@ -24,6 +27,9 @@ def ampliar_vizinho_proximo(matriz: NDArray) -> NDArray:
     return nova_matriz
 
 def reduzir_vizinho_proximo(matriz: NDArray):
+    """
+    Reduz uma matriz NumPy usando a interpolação de vizinho mais próximo.
+    """
     linhas = matriz.shape[0]
     colunas = matriz.shape[1]
 

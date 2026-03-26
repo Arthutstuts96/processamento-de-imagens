@@ -16,7 +16,7 @@ if __name__ == "__main__":
    
     matriz_pixels = imagem_para_matriz(imagem)
     
-    print(f"Dimensões da matriz (Linhas x Colunas): {matriz_pixels.shape}")
+    print(f"Dimensões da matriz: {matriz_pixels.shape}")
 
     # nova_imagem = ampliar_vizinho_proximo(matriz_pixels)
     nova_imagem = reduzir_vizinho_proximo(matriz_pixels)
