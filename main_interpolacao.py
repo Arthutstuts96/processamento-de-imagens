@@ -13,7 +13,8 @@ def main():
     except FileNotFoundError:
         print("Imagem não existe, convertendo...")
         imagem = converter_para_preto_e_branco(caminho)
-        imagem.save(caminho_pb)
+        if imagem:
+            imagem.save(caminho_pb)
    
     matriz_pixels = imagem_para_matriz(imagem)
     
