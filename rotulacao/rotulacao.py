@@ -1,51 +1,54 @@
+import numpy as np
+
 def rotular_imagem(matriz):
-    def criterio_aceitacao(valor):
-        return valor == 0
+    def tem_rotulo(valor: int):
+        return valor != 0
     
     linhas, colunas = matriz.shape
-    letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    rotulos = {}
-    index = 0
+    matriz_rotulos = np.zeros((linhas, colunas), dtype=int)
+    
+    proximo_rotulo = 1
+    equivalencias = {}
 
-    for i in range(linhas-1):
-        for j in range(colunas-1):
-            pixel = {
-                "valor": matriz[i][j],
-                "posicao": (i, j),
-                "rotulo": ""
-            }
+    for i in range(linhas):
+        for j in range(colunas):
+            if not tem_rotulo(matriz[i, j]):
+                cima = matriz_rotulos[i-1, j] if i > 0 else 0
+                esquerda = matriz_rotulos[i, j-1] if j > 0 else 0
 
-            print(pixel)
-            
-            cima = {
-                "valor": matriz[i-1][j],
-                "posicao": (i-1, j),
-                "rotulo": ""
-            }
-            esquerda = {
-                "valor": matriz[i][j-1],
-                "posicao": (i, j-1),
-                "rotulo": ""
-            }
-
-            if criterio_aceitacao(pixel):
-                pixel["rotulo"] = letras[index]
-
-                # Verifica o de cima
-                if criterio_aceitacao(cima):
-                    print("Igual o de cima")
-                    pixel["rotulo"] = cima["rotulo"]
-                    rotulos[letras[index]].append(pixel)
-
-                # Verifica o da esquerda
-                elif criterio_aceitacao(esquerda):
-                    print("Igual o da esquerda")
-                    pixel["rotulo"] = esquerda["rotulo"]
-                    rotulos[letras[index]].append(pixel)
-
+                if not tem_rotulo(cima) and not tem_rotulo(esquerda):
+                    matriz_rotulos[i, j] = proximo_rotulo
+                    equivalencias[proximo_rotulo] = proximo_rotulo
+                    proximo_rotulo += 1
+                    
+                elif tem_rotulo(cima) and not tem_rotulo(esquerda):
+                    matriz_rotulos[i, j] = cima
+                elif not tem_rotulo(cima) and tem_rotulo(esquerda):
+                    matriz_rotulos[i, j] = esquerda
+                    
                 else:
-                    print('Novo rótulo')
-                    rotulos[letras[index]] = [pixel]
-                    index += 1
+                    menor_rotulo = min(cima, esquerda)
+                    maior_rotulo = max(cima, esquerda)
+                    
+                    matriz_rotulos[i, j] = menor_rotulo
+                    
+                    equivalencias[maior_rotulo] = menor_rotulo
 
-    return rotulos
+    for rotulo in equivalencias:
+        atual = rotulo
+        while equivalencias[atual] != atual:
+            atual = equivalencias[atual]
+        equivalencias[rotulo] = atual
+
+    rotulos_finais = {}
+    for i in range(linhas):
+        for j in range(colunas):
+            if matriz_rotulos[i, j] != 0:
+                rotulo_correto = equivalencias[matriz_rotulos[i, j]]
+                
+                if rotulo_correto not in rotulos_finais:
+                    rotulos_finais[rotulo_correto] = []
+                
+                rotulos_finais[rotulo_correto].append((i, j))
+
+    return rotulos_finais

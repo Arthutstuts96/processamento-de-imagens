@@ -1,5 +1,3 @@
-import math
-
 import numpy as np
 from numpy.typing import NDArray
 
@@ -21,22 +19,11 @@ def ampliar_bilinear(matriz: NDArray):
             _i = i * 2
             _j = j * 2
 
-           # f(i,j) - O pixel original
-            nova_matriz[_i, _j] = pixel1 
-
-            # a - Média horizontal superior
+            nova_matriz[_i, _j] = pixel1
             nova_matriz[_i, _j + 1] = (pixel1 + pixel2) // 2
-            
-            # b - Média vertical esquerda
             nova_matriz[_i + 1, _j] = (pixel1 + pixel3) // 2
-            
-            # c - Média central (dos 4 pixels)
             nova_matriz[_i + 1, _j + 1] = (pixel1 + pixel2 + pixel3 + pixel4) // 4
-            
-            # d - Média vertical direita (entre p2 e p4)
-            nova_matriz[_i + 1, _j + 2] = (pixel2 + pixel4) // 2
-            
-            # e - Média horizontal inferior (entre p3 e p4)
+            nova_matriz[_i + 1, _j + 2] = (pixel2 + pixel4) // 2            
             nova_matriz[_i + 2, _j + 1] = (pixel3 + pixel4) // 2
 
     return nova_matriz
@@ -54,7 +41,6 @@ def reduzir_bilinear(matriz: NDArray):
             pixel3 = matriz[i + 1][j]
             pixel4 = matriz[i + 1][j + 1]
 
-            # Média dos 4 pixels
             nova_matriz[i // 2, j // 2] = (pixel1 + pixel2 + pixel3 + pixel4) // 4
 
     return nova_matriz
