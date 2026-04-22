@@ -1,16 +1,23 @@
 # TODO: Fazer 2 operações aritmética de adição, subtração, multiplicação ou divisão
 # TODO: Fazer 1 operação geométrica de rotação, espelhamento, translação ou reflexão
+# TODO: Fazer 1 operação de transformação de intensidade(negativa, logarítmica, exponencial)
 
 from PIL import Image
 from conversao import converter_para_preto_e_branco, imagem_para_matriz, salvar_matriz_como_imagem
+<<<<<<< HEAD
 from funcoes.operacoes.rotacao import rotacionar_matriz
 from funcoes.operacoes.aritmetica import somar_matrizes, subtrair_matrizes
+=======
+from operacoes.rotacao import rotacionar_matriz
+from operacoes.aritmetica import somar_matrizes, subtrair_matrizes
+from operacoes.intensidade import inverter_intensidade
+>>>>>>> 40da3f4 (transformacao em negativo)
 
 
 def main():
-    caminho_um = "imagens/banana_1.jpg"
+    caminho_um = "imagens/anjocaido.jpg"
     caminho_dois = "imagens/mario.png"
-    caminho_pb_um = "imagens/preto_e_branco/banana_1.jpg"
+    caminho_pb_um = "imagens/preto_e_branco/anjocaido.jpg"
     caminho_pb_dois = "imagens/preto_e_branco/mario.png"
 
     try:
@@ -28,16 +35,19 @@ def main():
     matriz_pixels_dois = imagem_para_matriz(imagem_dois)
     
     # --- SOMA
-    matriz_soma = somar_matrizes(matriz_pixels_um, matriz_pixels_dois)
-    salvar_matriz_como_imagem(matriz_soma, "operacoes/aritmetica/imagem_soma_MARIOBANANA.jpg")
+    #matriz_soma = somar_matrizes(matriz_pixels_um, matriz_pixels_dois)
+    #salvar_matriz_como_imagem(matriz_soma, "operacoes/aritmetica/imagem_soma_MARIOBANANA.jpg")
 
     # --- SUBTRAÇÃO
-    matriz_subtracao = subtrair_matrizes(matriz_pixels_um, matriz_pixels_dois)
-    salvar_matriz_como_imagem(matriz_subtracao, "operacoes/aritmetica/imagem_subtracao_MARIOBANANA.jpg")
+    #matriz_subtracao = subtrair_matrizes(matriz_pixels_um, matriz_pixels_dois)
+    #salvar_matriz_como_imagem(matriz_subtracao, "operacoes/aritmetica/imagem_subtracao_MARIOBANANA.jpg")
 
     # --- ROTAÇÃO
-    matriz_rotacao = rotacionar_matriz(matriz_pixels_dois, 90)
-    salvar_matriz_como_imagem(matriz_rotacao, "operacoes/geometrica/mario_90_graus.png")
+    #matriz_rotacao = rotacionar_matriz(matriz_pixels_dois, 90)
+    #salvar_matriz_como_imagem(matriz_rotacao, "operacoes/geometrica/mario_90_graus.png")
+
+    matriz_invertida = inverter_intensidade(matriz_pixels_um)
+    salvar_matriz_como_imagem(matriz_invertida, "operacoes/intensidade/anjocaido_invertida.png")
 
 if __name__ == "__main__":
     main()
