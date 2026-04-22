@@ -5,8 +5,8 @@ from conversao import converter_para_preto_e_branco, imagem_para_matriz, salvar_
 from funcoes.histograma.equalizacao import equalizar_histograma
 
 def main():
-    caminho = "imagens/banana.jpg"
-    caminho_pb = "imagens/preto_e_branco/banana.jpg"
+    caminho = "imagens/mario.png"
+    caminho_pb = "imagens/preto_e_branco/mario.png"
 
     try:
         imagem = Image.open(caminho_pb)
@@ -19,7 +19,7 @@ def main():
     matriz_pixels = imagem_para_matriz(imagem)
     
     nova_imagem = equalizar_histograma(matriz_pixels)
-    salvar_matriz_como_imagem(nova_imagem, "histograma/banana_equalizada.jpg")
+    salvar_matriz_como_imagem(nova_imagem, "histograma/mario_equalizado.png")
 
 
 if __name__ == "__main__":
