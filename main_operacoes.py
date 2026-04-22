@@ -3,8 +3,8 @@
 
 from PIL import Image
 from conversao import converter_para_preto_e_branco, imagem_para_matriz, salvar_matriz_como_imagem
-from operacoes.rotacao import rotacionar_matriz
-from operacoes.aritmetica import somar_matrizes, subtrair_matrizes
+from funcoes.operacoes.rotacao import rotacionar_matriz
+from funcoes.operacoes.aritmetica import somar_matrizes, subtrair_matrizes
 
 
 def main():

@@ -1,7 +1,7 @@
 from PIL import Image
 from conversao import converter_para_preto_e_branco, imagem_para_matriz, salvar_matriz_como_imagem
-from interpolacao.interpolacao_vizinho_proximo import ampliar_vizinho_proximo, reduzir_vizinho_proximo
-from interpolacao.interpolacao_bilinear import ampliar_bilinear, reduzir_bilinear
+from funcoes.interpolacao.interpolacao_vizinho_proximo import ampliar_vizinho_proximo, reduzir_vizinho_proximo
+from funcoes.interpolacao.interpolacao_bilinear import ampliar_bilinear, reduzir_bilinear
 import os
 
 def main():

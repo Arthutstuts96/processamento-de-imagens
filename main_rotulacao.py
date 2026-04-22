@@ -1,7 +1,7 @@
 from PIL import Image
 from conversao import binarizar_imagem, converter_para_preto_e_branco, imagem_para_matriz, salvar_matriz_como_imagem
 
-from rotulacao.rotulacao import rotular_imagem
+from funcoes.rotulacao.rotulacao import rotular_imagem
 
 def main():
     caminho = "imagens/formas_geometricas.png"
