@@ -6,9 +6,30 @@ def aplicar_filtro(matriz, filtro="media"):
 
     #TODO: Colocar cases para os outros filtros
     match filtro:
-        case "laplace-1": mascara = [[-1,-1,-1],
-                                [-1,8,-1],
-                                [-1,-1,-1]]
+        case "laplace-1": mascara = [[0,1,0],
+                                    [1,-4,1],
+                                    [0,1,0]]
+            
+        case "laplace-2": mascara = [[0,-1,0],
+                                    [-1,4,-1],
+                                    [0,-1,0]]
+            
+        case "laplace-3": mascara = [[1,1,1],
+                                    [1,-8,1],
+                                    [1,1,1]]
+            
+        case "laplace-4": mascara = [[-1,-1,-1],
+                                    [-1,8,-1],
+                                    [-1,-1,-1]]
+            
+        case "sobel-h": mascara = [[-1,-2,-1],
+                                [0,0,0],
+                                [1,2,1]]
+            
+        case "sobel-v": mascara = [[-1,0,1],
+                                [-2,0,2],
+                                [-1,0,1]]
+            
         case "media": mascara = [[1,1,1],
                                 [1,1,1],
                                 [1,1,1]]
@@ -38,6 +59,6 @@ def aplicar_filtro(matriz, filtro="media"):
             )
             
             resultado = soma / 9
-            nova_matriz[i][j] = round(resultado) if resultado > 0 else 0
+            nova_matriz[i][j] = round(resultado) if resultado > 0 else abs(resultado)
             
     return nova_matriz

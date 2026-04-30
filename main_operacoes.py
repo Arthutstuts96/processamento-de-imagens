@@ -4,35 +4,24 @@
 
 from PIL import Image
 from conversao import converter_para_preto_e_branco, imagem_para_matriz, salvar_matriz_como_imagem
-<<<<<<< HEAD
 from funcoes.operacoes.rotacao import rotacionar_matriz
 from funcoes.operacoes.aritmetica import somar_matrizes, subtrair_matrizes
-=======
-from operacoes.rotacao import rotacionar_matriz
-from operacoes.aritmetica import somar_matrizes, subtrair_matrizes
-from operacoes.intensidade import inverter_intensidade
->>>>>>> 40da3f4 (transformacao em negativo)
+from funcoes.operacoes.intensidade import inverter_intensidade
 
 
 def main():
-    caminho_um = "imagens/anjocaido.jpg"
-    caminho_dois = "imagens/mario.png"
-    caminho_pb_um = "imagens/preto_e_branco/anjocaido.jpg"
-    caminho_pb_dois = "imagens/preto_e_branco/mario.png"
+    caminho_um = "imagens/resultados/filtragem/filtro_beatles_laplace_4.png"
+    caminho_pb_um = "imagens/resultados/filtragem/filtro_beatles_laplace_4.png"
 
     try:
         imagem_um = Image.open(caminho_pb_um)
-        imagem_dois = Image.open(caminho_pb_dois)
     except FileNotFoundError:
         print("Imagem não existe, convertendo...")
         imagem_um = converter_para_preto_e_branco(caminho_um)
-        imagem_dois = converter_para_preto_e_branco(caminho_dois)
-        if imagem_um and imagem_dois:
+        if imagem_um:
             imagem_um.save(caminho_pb_um)
-            imagem_dois.save(caminho_pb_dois)
 
     matriz_pixels_um = imagem_para_matriz(imagem_um)
-    matriz_pixels_dois = imagem_para_matriz(imagem_dois)
     
     # --- SOMA
     #matriz_soma = somar_matrizes(matriz_pixels_um, matriz_pixels_dois)
@@ -47,7 +36,7 @@ def main():
     #salvar_matriz_como_imagem(matriz_rotacao, "operacoes/geometrica/mario_90_graus.png")
 
     matriz_invertida = inverter_intensidade(matriz_pixels_um)
-    salvar_matriz_como_imagem(matriz_invertida, "operacoes/intensidade/anjocaido_invertida.png")
+    salvar_matriz_como_imagem(matriz_invertida, "operacoes/intensidade/filtro_beatles_invertido.jpg")
 
 if __name__ == "__main__":
     main()

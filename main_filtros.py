@@ -22,9 +22,23 @@ def main():
     # nova_imagem = aplicar_filtro(matriz_pixels, "media")
     # salvar_matriz_como_imagem(nova_imagem, "filtragem/filtro_mario_media.png")
 
-    nova_imagem = aplicar_filtro(matriz_pixels, "laplace-1")
-    salvar_matriz_como_imagem(nova_imagem, "filtragem/filtro_mario_laplace_1.png")
-    #TODO: Fazer para as outras máscaras: 4 máscaras de laplaciano, filtro gradiente com a máscara de Sobel
+    # nova_imagem = aplicar_filtro(matriz_pixels, "laplace-1")
+    # salvar_matriz_como_imagem(nova_imagem, "filtragem/filtro_beatles_laplace_1.png")
+
+    # nova_imagem = aplicar_filtro(matriz_pixels, "laplace-2")
+    # salvar_matriz_como_imagem(nova_imagem, "filtragem/filtro_beatles_laplace_2.png")
+
+    # nova_imagem = aplicar_filtro(matriz_pixels, "laplace-3")
+    # salvar_matriz_como_imagem(nova_imagem, "filtragem/filtro_beatles_laplace_3.png")
+
+    # nova_imagem = aplicar_filtro(matriz_pixels, "laplace-4")
+    # salvar_matriz_como_imagem(nova_imagem, "filtragem/filtro_beatles_laplace_4.png")
+
+    nova_imagem = aplicar_filtro(matriz_pixels, "sobel-h")
+    salvar_matriz_como_imagem(nova_imagem, "filtragem/filtro_mario_sobel-h.png")
+
+    nova_imagem = aplicar_filtro(matriz_pixels, "sobel-v")
+    salvar_matriz_como_imagem(nova_imagem, "filtragem/filtro_mario_sobel-v.png")
 
 
 if __name__ == "__main__":
